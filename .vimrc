@@ -1,22 +1,28 @@
 call plug#begin()
 
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
 Plug 'pangloss/vim-javascript'    " JavaScript support
 Plug 'leafgarland/typescript-vim' " TypeScript syntax
 Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'jparise/vim-graphql'        " GraphQL syntax
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'airblade/vim-gitgutter'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'frazrepo/vim-rainbow'
+
 Plug 'vim-ctrlspace/vim-ctrlspace'
+Plug 'ctrlpvim/ctrlp.vim'
+
+Plug 'frazrepo/vim-rainbow'
 Plug 'mhinz/vim-startify'
 Plug 'jiangmiao/auto-pairs'
 
@@ -26,7 +32,7 @@ Plug 'morhetz/gruvbox'
 
 call plug#end()
 
-colorscheme gruvbox
+colorscheme iceberg
 set background=dark
 
 set nocompatible
@@ -49,13 +55,20 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set number relativenumber
-let g:gitgutter_async=0
+let g:gitgutter_async=1
+let mapleader = "\<Space>"
 
 " POGGERS
 inoremap ;; <Esc>A;
+nnoremap <C-h> :tabprevious<cr>
+nnoremap <C-l> :tabnext<cr>
+nmap <leader>vim :tabnew ~/.vimrc<cr>
 
-let mapleader = "\<Space>"
-
+" FUGITIVE
+nmap <leader>gs :G<cr>
+nmap <leader>gj :diffget //3<cr>
+nmap <leader>gf :diffget //3<cr>
+ 
 " WINDOWS
 nnoremap <leader>h <C-w>h
 nnoremap <leader>j <C-w>j
@@ -68,7 +81,7 @@ nnoremap <leader>l <C-w>l
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " GITGUTTER
-let g:gitgutter_diff_base='HEAD'
+let g:gitgutter_grep = ''
 
 " NERDTREE
 nnoremap <leader>ft :NERDTree<cr>

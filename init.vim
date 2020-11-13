@@ -22,7 +22,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'joshdick/onedark.vim'
 
 Plug 'mhinz/vim-startify'
-" Plug 'jiangmiao/auto-pairs'
+Plug 'tmsvg/pear-tree'
 
 " POPE SHRINE
 Plug 'tpope/vim-fugitive'

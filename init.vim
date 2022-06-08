@@ -24,10 +24,18 @@ Plug 'joshdick/onedark.vim'
 Plug 'mhinz/vim-startify'
 Plug 'tmsvg/pear-tree'
 
+" Telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 " POPE SHRINE
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+
+" Context aware commenting
+Plug 'suy/vim-context-commentstring'
 
 call plug#end()
 
@@ -41,12 +49,13 @@ set encoding=utf-8
 colorscheme onedark
 
 " Setters
-set tabstop=2
-set shiftwidth=2
+set ts=2 sts=2 sw=2 expandtab
 set smartindent
 set number relativenumber
-let mapleader = "\<Space>"
+
+" LEADER
 let g:CtrlSpaceDefaultMappingKey = "<C-space> "
+let mapleader = "\<Space>"
 
 " Poggers
 nnoremap <C-h> :tabprevious<CR>
@@ -60,6 +69,7 @@ nnoremap <leader>l <C-w>l
 
 " NERDTREE
 nnoremap <leader>ft :NERDTree<CR>
+nnoremap <leader>b :NERDTreeToggle<CR>
 let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Modified'  :'✹',
                 \ 'Staged'    :'✚',
@@ -77,6 +87,14 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 nmap <leader>gs :G<cr>
 nmap <leader>gj :diffget //3<cr>
 nmap <leader>gf :diffget //3<cr>
+
+" TELESCOPE
+nmap <C-p> :Telescope find_files<CR>
+nmap <C-f> :Telescope live_grep<CR>
+
+" Find in project
+nmap <leader>f :Telescope live_grep<CR>
+nmap <leader>F :Telescope grep_string<CR>
 
 " GITGUTTER
 set signcolumn=yes
@@ -97,6 +115,9 @@ let g:gitgutter_sign_modified_removed = '-'
 let g:coc_global_extensions = [
 			\ 'coc-tsserver',
 			\ ]
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " inoremap <silent><expr> <Tab> coc#refresh()
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
